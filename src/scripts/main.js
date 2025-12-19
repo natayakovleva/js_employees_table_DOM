@@ -146,7 +146,7 @@ function validateEmployee({ name: employeeName, position, age, salary }) {
     };
   }
 
-  if (age === undefined || age < 18 || age > 90) {
+  if (age === undefined || isNaN(age) || age < 18 || age > 90) {
     return {
       valid: false,
       title: 'Invalid age',
