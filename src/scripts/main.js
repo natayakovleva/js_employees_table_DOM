@@ -129,7 +129,7 @@ table.before(form);
 
 // ------------------- validation ------------------
 
-function validateEmployee({ name: employeeName, position, age }) {
+function validateEmployee({ name: employeeName, position, age, salary }) {
   if (!employeeName || employeeName.trim().length < 4) {
     return {
       valid: false,
@@ -146,11 +146,24 @@ function validateEmployee({ name: employeeName, position, age }) {
     };
   }
 
-  if (age < 18 || age > 90) {
+  if (age === undefined || age < 18 || age > 90) {
     return {
       valid: false,
       title: 'Invalid age',
       message: 'Age must be between 18 and 90',
+    };
+  }
+
+  if (
+    salary === undefined ||
+    salary === '' ||
+    isNaN(salary) ||
+    Number(salary) <= 0
+  ) {
+    return {
+      valid: false,
+      title: 'Invalid salary',
+      message: 'Salary must be a positive number',
     };
   }
 
